@@ -1,0 +1,107 @@
+*{
+	text-decoration: none;
+	box-sizing: border-box;
+	font-family: Arial;
+}
+
+body{
+	background-image: url("imagens/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+div#corpo-form{
+	width: 360px;
+	background-color: #f0fdeb;
+	height: 710px;
+	padding-top: 35px;
+	padding-right: 40px; 
+	padding-left: 40px;
+	margin: 0px 0px;
+	font-size: 20px;
+	align-items: center;
+	border-radius: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+
+div#corpo-form h2 {
+	text-align: center;
+	margin-bottom: -20px;
+	padding: 20px;
+	font-size:20pt;
+	font-family: helvetica;
+}
+
+input[type='submit']{
+	background-color: #009123;
+	border: none;
+	align-content: center;
+	height: 50px;
+	width: 100%;
+	margin-top:0px;
+	border-radius: 10px;
+	border: 1px solid #87d403;
+	font-size: 20px;
+	padding: 0px 5px;
+	color: white;
+	outline: none;
+}
+
+input:not([type ='submit']) {
+	display: block;
+	cursor: pointer;
+	align-content: center;
+	height: 40px;
+	width: 100%;
+	margin: 10px 13px 0px;
+	border-radius: 15px;
+	border: 1px solid black;
+	font-size: 20px;
+	padding: 0px 5px;
+	background-color: rgb(225,225,255,0%);
+	color: black;
+	outline: none;
+
+}
+
+
+
+
+#coisasEscritas{
+	position: relative;
+	top: 20px;
+}
+
+#linkLogin{
+	color: darkgreen;
+	text-decoration: none;
+}
+
+#iconNome{
+	position: relative;
+	right: 150px;
+	top: 47px;
+}
+
+#iconLogin{
+	position: relative;
+	right: 150px;
+	top: 47px;
+}
+
+
+#iconSenha{
+	position: relative;
+	right: 150px;
+	top: 47px;
+}
+
+#iconSenha2{
+	position: relative;
+	right: 150px;
+	top: 47px;
+}
+
+

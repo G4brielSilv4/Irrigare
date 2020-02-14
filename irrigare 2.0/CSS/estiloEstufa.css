@@ -1,0 +1,46 @@
+header {
+	position: fixed;
+    background-color: #548500;
+    color: white;
+    font-size: 10px;
+    width: 1355px;
+    height: 60px;
+    font-family: Arimo;
+    border-radius: 10px;
+ 	padding: 1px 1px;
+    margin-bottom: 5px;
+}
+
+
+input {
+	display: block;
+	height: 50px;
+	width: 400px;
+	margin: 10px;
+	border-radius: 10px;
+	border: 1px solid #87d403;
+	font-size: 20px;
+	font-family: Arimo;
+	padding: 10px 20px;
+	background-color: #87d403;
+	color: white;
+	outline: none;
+	cursor: pointer;;
+
+}
+
+
+div#corpo-tela{
+	background-color: white;
+	width: 420px;
+	margin: 150px auto 10px auto;
+}
+
+footer {
+    background-color: #548500;
+    width: 1355px;
+    height: 30px;
+    border-radius: 10px;
+ 	padding: 1px 1px;
+    margin-bottom: 5px;
+}

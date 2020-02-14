@@ -1,0 +1,98 @@
+*{
+	text-decoration: none;
+	box-sizing: border-box;
+	font-family: Arial;
+}
+
+body{
+	background-image: url("imagens/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;/*
+	background-color: #009300;*/
+}
+
+input[type='submit']{
+	background-color: #009123;
+	border: none;
+	align-content: center;
+	height: 50px;
+	width: 100%;
+	margin-top: 17px;
+	border-radius: 15px;
+	border: 1px solid #87d403;
+	font-size: 20px;
+	padding: 0px 5px;
+	color: white;
+	outline: none;
+}
+
+input:not([type ='submit']) {
+	display: block;
+	cursor: pointer;
+	align-content: center;
+	height: 40px;
+	width: 100%;
+	margin: 10px 13px -5px;
+	border-radius: 10px;
+	border: 1px solid black;
+	font-size: 20px;
+	padding: 0px 5px;
+	background-color: rgb(225,225,255,0%);
+	color: black;
+	outline: none;
+
+}
+
+
+div#corpo-form{
+	width: 360px;
+	background-color: #f0fdeb;
+	height: 600px;
+	padding-top: 35px;
+	padding-right: 40px; 
+	padding-left: 40px;
+	margin: 0px 0px;
+	font-size: 20px;
+	align-items: center;
+	border-radius: 10px;
+}
+
+div#corpo-form h2 {
+	text-align: center;
+	position: relative;
+	font-size: 20pt;
+	font-family: helvetica;
+	margin-top: 10px;
+}
+
+#erroLogin{
+	color: red;
+	font-family: arial;
+	font-size: 12pt;
+}
+
+#campoSenha{
+	margin-bottom: 30px;
+}
+
+#iconEnvelope{
+	position: relative;
+	right: 150px;
+	top: 47px;
+}
+
+#iconCadeado{
+	position: relative;
+	right: 150px;
+	top: 47px;
+}
+
+#coisaEscrita{
+	position: relative;
+	top: 20px;
+}
+
+#componentPainel{
+	position: relative;
+	top: 16px;
+}
