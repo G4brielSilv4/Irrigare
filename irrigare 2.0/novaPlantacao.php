@@ -14,23 +14,7 @@ $usu = $_SESSION['codUsuario'];
 
 $sql = $mysqli->query("SELECT nome FROM cultura");
 $linhas = mysqli_num_rows($sql);
-
-
-#---/---/---/---/---/---/---/---/---/---/---/---/---/---/---/---/---/---/---/---/
-
-
-$consulta =  "SELECT * FROM cultura";	
-$con = $mysqli->query($consulta) or die($mysqli->error);
-	
-	while($dados = $con->fetch_array()){
-		$vetor1 = [$dados['nome'],$dados['descricao'],$dados['temp_ideal'],$dados['umi_ideal']];
-
-	}
-	var_dump($vetor1); 
 ?>
-
-
-
 <!DOCTYPE html> 
 <html lang="pt-br">
 <head>
