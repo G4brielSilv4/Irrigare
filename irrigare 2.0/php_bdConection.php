@@ -11,10 +11,10 @@ if ($mysqli -> connect_error)
     die("connection failed: ".mysqli_connect_error())
 /*/
 
-	$db_host = "localhost";
+	$db_host = "www.db4free.net";
 	$db_name = "irrigare";
-	$db_user = "root";
-	$db_pass = "";
+	$db_user = "irrigare";
+	$db_pass = "#SaraEBiel123";
 	
 	$mysqli = new mysqli($db_host, $db_user,$db_pass,$db_name);
 

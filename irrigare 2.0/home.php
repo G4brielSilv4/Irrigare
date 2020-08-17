@@ -8,6 +8,8 @@ if ($_SESSION['usuarioIdntf'] == false) {
 
 require_once('php_bdConection.php');
 
+//Resgatando valores do banco de dados
+
 $email = $_SESSION['emailUsuario'];
 
 $consulta =  "SELECT * FROM usuario where login = '{$email}'";
@@ -45,13 +47,19 @@ $connn = $mysqli->query($controle) or die($mysqli->error);
 while ($dadosCont = $connn->fetch_array()) {
     $_SESSION['codCont'] = $dadosCont['cod'];
     $_SESSION['umiCont'] = $dadosCont['umi_atual'];
-    $_SESSION['dataCont'] = $dadosCont['data'];
     $_SESSION['tempCont'] = $dadosCont['temp_atual'];
-    $_SESSION['horaCont'] = $dadosCont['hora'];
+    $_SESSION['tempoCont'] = $dadosCont['tempo'];
     $_SESSION['umiArCont'] = $dadosCont['umiAr_atual'];
 }
 
+include('controleDiario.php');
 
+//Destruindo os placeholders da tabela de cadatro
+
+unset($_SESSION['placeName']);
+unset($_SESSION['placeDesc']);
+unset($_SESSION['placeTemp']);
+unset($_SESSION['placeUmi']);
 ?>
 
 <!DOCTYPE html>
@@ -106,10 +114,10 @@ while ($dadosCont = $connn->fetch_array()) {
                 </tr>
 
                 <tr>
-                    <th style="text-align:center;">Última irrigacao efetuada</th>
+                    <th style="text-align:center;">Última consulta</th>
                 </tr>
                 <tr>
-                    <td style="text-align:center;"> 10:34 - 11/11/11</td>
+                    <td style="text-align:center;"> <?php echo $_SESSION['tempoCont'] ?></td>
                 </tr>
 
                 <tr>
@@ -463,11 +471,12 @@ while ($dadosCont = $connn->fetch_array()) {
     <div class="container-fluid">
         <div class="col-sm-12" align="center">
             <p id="textoBotaoGraf">Clicando no botão abaixo você terá acesso a um grafico que contem os dados de umidade do solo,<br> temperatura e umidade relativa do ar
-                de sua estufa nos ultimos 15 dias, podendo fazer download do mesmo se assim preferir:</p>
-            <span class="botaoGraf">Dados dos ultimos 15 dias</span>
-            <div class='graficoUmi'>
+                de sua estufa nos ultimos 7 dias, podendo fazer download do mesmo se assim preferir:</p>
 
-                <!-- Grafico de linha -->
+            <!-- Grafico de linha -->
+
+            <span class="botaoGraf">Dados dos ultimos 7 dias</span>
+            <div class='grafico7dias'>
 
                 <figure class="highcharts-figure">
                     <div id="container"></div>
@@ -482,7 +491,7 @@ while ($dadosCont = $connn->fetch_array()) {
                             text: 'Umidade e temperatura nos ultimos 30 dias'
                         },
                         xAxis: {
-                            categories: ['7', '6', '5', '4', '3', '2', '1', 'hoje']
+                            categories: ['7', '6', '5', '4', '3', '2', '1']
                         },
                         yAxis: {
                             title: {
@@ -499,20 +508,111 @@ while ($dadosCont = $connn->fetch_array()) {
                         },
                         series: [{
                             name: 'Umidade solo (%)',
-                            data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 80.2, 26.5]
+                            data: [<?php echo ($umidade6); ?>, <?php echo ($umidade5); ?>, <?php echo ($umidade4); ?>, <?php echo ($umidade3); ?>, <?php echo ($umidade2); ?>, <?php echo ($umidade1); ?>, <?php echo ($umidadeDiario1); ?>]
                         }, {
                             name: 'Temperatura (°C)',
-                            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6]
+                            data: [<?php echo ($temperatura6); ?>, <?php echo ($temperatura5); ?>, <?php echo ($temperatura4); ?>, <?php echo ($temperatura3); ?>, <?php echo ($temperatura2); ?>, <?php echo ($temperatura1); ?>, <?php echo ($temperaturaDiario1); ?>]
                         }, {
                             name: 'Umidade ar (%)',
-                            data: [4.9, 9.2, 2.7, 11.5, 22.9, 10.2, 13.0, 14.6]
+                            data: [<?php echo ($umidadeAr6); ?>, <?php echo ($umidadeAr5); ?>, <?php echo ($umidadeAr4); ?>, <?php echo ($umidadeAr3); ?>, <?php echo ($umidadeAr2); ?>, <?php echo ($umidadeAr1); ?>, <?php echo ($umidadeArDiario1); ?>]
+                        }]
+                    });
+                </script>
+            </div>
+<!--
+            <span class="botaoGrafi">Dados dos ultimos 15 dias</span>
+            <div class='graficoUmid'>
+
+                <figure class="highcharts-figure">
+                    <div id="container"></div>
+                </figure>
+
+                <script>
+                    Highcharts.chart('container', {
+                        chart: {
+                            type: 'line'
+                        },
+                        title: {
+                            text: 'Umidade e temperatura nos ultimos 30 dias'
+                        },
+                        xAxis: {
+                            categories: ['15', '14', '13', '12', '11', '10', '9', '8', '7', '6', '5', '4', '3', '2', '1']
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Indice (%)/(°C)'
+                            }
+                        },
+                        plotOptions: {
+                            line: {
+                                dataLabels: {
+                                    enabled: true
+                                },
+                                enableMouseTracking: false
+                            }
+                        },
+                        series: [{
+                            name: 'Umidade solo (%)',
+                            data: [<?php echo ($umidade14); ?>, <?php echo ($umidade13); ?>, <?php echo ($umidade12); ?>, <?php echo ($umidade11); ?>, <?php echo ($umidade10); ?>, <?php echo ($umidade9); ?>, <?php echo ($umidade8); ?>, <?php echo ($umidade7); ?>, <?php echo ($umidade6); ?>, <?php echo ($umidade5); ?>, <?php echo ($umidade4); ?>, <?php echo ($umidade3); ?>, <?php echo ($umidade2); ?>, <?php echo ($umidade1); ?>, <?php echo ($umidadeDiario1); ?>]
+                        }, {
+                            name: 'Temperatura (°C)',
+                            data: [<?php echo ($temperatura14); ?>, <?php echo ($temperatura13); ?>, <?php echo ($temperatura12); ?>, <?php echo ($temperatura11); ?>, <?php echo ($temperatura10); ?>, <?php echo ($temperatura9); ?>, <?php echo ($temperatura8); ?>, <?php echo ($temperatura7); ?>, <?php echo ($temperatura6); ?>, <?php echo ($temperatura5); ?>, <?php echo ($temperatura4); ?>, <?php echo ($temperatura3); ?>, <?php echo ($temperatura2); ?>, <?php echo ($temperatura1); ?>, <?php echo ($temperaturaDiario1); ?>]
+                        }, {
+                            name: 'Umidade ar (%)',
+                            data: [<?php echo ($umidadeAr14); ?>, <?php echo ($umidadeAr13); ?>, <?php echo ($umidadeAr12); ?>, <?php echo ($umidadeAr11); ?>, <?php echo ($umidadeAr10); ?>, <?php echo ($umidadeAr9); ?>, <?php echo ($umidadeAr8); ?>, <?php echo ($umidadeAr7); ?>, <?php echo ($umidadeAr6); ?>, <?php echo ($umidadeAr5); ?>, <?php echo ($umidadeAr4); ?>, <?php echo ($umidadeAr3); ?>, <?php echo ($umidadeAr2); ?>, <?php echo ($umidadeAr1); ?>, <?php echo ($umidadeArDiario1); ?>]
                         }]
                     });
                 </script>
 
+            </div>
 
+
+            <span class="botaoGraf30">Dados dos ultimos 30 dias</span>
+            <div class='graficoUmi30'>
+
+                <figure class="highcharts-figure">
+                    <div id="container"></div>
+                </figure>
+
+                <script>
+                    Highcharts.chart('container', {
+                        chart: {
+                            type: 'line'
+                        },
+                        title: {
+                            text: 'Umidade e temperatura nos ultimos 30 dias'
+                        },
+                        xAxis: {
+                            categories: ['30', '29', '28', '27', '26', '25', '24', '23', '22', '21', '20', '19', '18', '17','16', '15', '14', '13', '12', '11', '10', '9', '8', '7','6', '5', '4', '3', '2', '1']
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Indice (%)/(°C)'
+                            }
+                        },
+                        plotOptions: {
+                            line: {
+                                dataLabels: {
+                                    enabled: true
+                                },
+                                enableMouseTracking: false
+                            }
+                        },
+                        series: [{
+                            name: 'Umidade solo (%)',
+                            data: [<?php echo ($umidade29); ?>, <?php echo ($umidade28); ?>, <?php echo ($umidade27); ?>, <?php echo ($umidade26); ?>, <?php echo ($umidade25); ?>, <?php echo ($umidade24); ?>, <?php echo ($umidade23); ?>, <?php echo ($umidade22); ?>, <?php echo ($umidade21); ?>, <?php echo ($umidade20); ?>, <?php echo ($umidade19); ?>, <?php echo ($umidade18); ?>, <?php echo ($umidade17); ?>, <?php echo ($umidade16); ?>, <?php echo ($umidade15); ?>, <?php echo ($umidade14); ?>, <?php echo ($umidade13); ?>, <?php echo ($umidade12); ?>, <?php echo ($umidade11); ?>, <?php echo ($umidade10); ?>, <?php echo ($umidade9); ?>, <?php echo ($umidade8); ?>, <?php echo ($umidade7); ?>, <?php echo ($umidade6); ?>, <?php echo ($umidade5); ?>, <?php echo ($umidade4); ?>, <?php echo ($umidade3); ?>, <?php echo ($umidade2); ?>, <?php echo ($umidade1); ?>, <?php echo ($umidadeDiario1); ?>]
+                        }, {
+                            name: 'Temperatura (°C)',
+                            data: [<?php echo ($temperatura29); ?>, <?php echo ($temperatura28); ?>, <?php echo ($temperatura27); ?>, <?php echo ($temperatura26); ?>, <?php echo ($temperatura25); ?>, <?php echo ($temperatura24); ?>, <?php echo ($temperatura23); ?>, <?php echo ($temperatura22); ?>, <?php echo ($temperatura21); ?>, <?php echo ($temperatura20); ?>, <?php echo ($temperatura19); ?>, <?php echo ($temperatura18); ?>, <?php echo ($temperatura17); ?>, <?php echo ($temperatura16); ?>, <?php echo ($temperatura15); ?>, <?php echo ($temperatura14); ?>, <?php echo ($temperatura13); ?>, <?php echo ($temperatura12); ?>, <?php echo ($temperatura11); ?>, <?php echo ($temperatura10); ?>, <?php echo ($temperatura9); ?>, <?php echo ($temperatura8); ?>, <?php echo ($temperatura7); ?>, <?php echo ($temperatura6); ?>, <?php echo ($temperatura5); ?>, <?php echo ($temperatura4); ?>, <?php echo ($temperatura3); ?>, <?php echo ($temperatura2); ?>, <?php echo ($temperatura1); ?>, <?php echo ($temperaturaDiario1); ?>]
+                        }, {
+                            name: 'Umidade ar (%)',
+                            data: [<?php echo ($umidadeAr29); ?>, <?php echo ($umidadeAr28); ?>, <?php echo ($umidadeAr27); ?>, <?php echo ($umidadeAr26); ?>, <?php echo ($umidadeAr25); ?>, <?php echo ($umidadeAr24); ?>, <?php echo ($umidadeAr23); ?>, <?php echo ($umidadeAr22); ?>, <?php echo ($umidadeAr21); ?>, <?php echo ($umidadeAr20); ?>, <?php echo ($umidadeAr19); ?>, <?php echo ($umidadeAr18); ?>, <?php echo ($umidadeAr17); ?>, <?php echo ($umidadeAr16); ?>, <?php echo ($umidadeAr15); ?>, <?php echo ($umidadeAr14); ?>, <?php echo ($umidadeAr13); ?>, <?php echo ($umidadeAr12); ?>, <?php echo ($umidadeAr11); ?>, <?php echo ($umidadeAr10); ?>, <?php echo ($umidadeAr9); ?>, <?php echo ($umidadeAr8); ?>, <?php echo ($umidadeAr7); ?>, <?php echo ($umidadeAr6); ?>, <?php echo ($umidadeAr5); ?>, <?php echo ($umidadeAr4); ?>, <?php echo ($umidadeAr3); ?>, <?php echo ($umidadeAr2); ?>, <?php echo ($umidadeAr1); ?>, <?php echo ($umidadeArDiario1); ?>]
+                        }]
+                    });
+                </script>
 
             </div>
+                -->
         </div>
     </div>
     <div>
