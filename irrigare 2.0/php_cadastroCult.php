@@ -22,25 +22,25 @@ if (empty($nome)) {
     $_SESSION['placeTemp'] = "O campo Temperatura ideal é obrigatorio!";
     $erro =1;
 } if (!is_numeric($temp_ideal)) {
-    $_SESSION['placeTemp'] = "A temperatura ideal da cultura precisa ser um número!";
+    $_SESSION['placeTemp'] = "O campo precisa ser um número!";
     $erro =1;
 } if ($temp_ideal < 0) {
-    $_SESSION['placeTemp'] = "A temperatura ideal da cultura não pode ser um valor negativo!";
+    $_SESSION['placeTemp'] = "O campo não pode ser um valor negativo!";
     $erro =1;
 } if ($temp_ideal > 100) {
-    $_SESSION['placeTemp'] = "A temperatura ideal da cultura não pode exceder 100°C!";
+    $_SESSION['placeTemp'] = "O campo não pode exceder 100°C!";
     $erro =1;
 } if (empty($umi_ideal)) {
     $_SESSION['placeUmi'] = "O campo Umidade ideal é obrigatorio";
     $erro =1;
 } if (!is_numeric($umi_ideal)) {
-    $_SESSION['placeUmi'] = "A umidade ideal da cultura precisa ser um número!";
+    $_SESSION['placeUmi'] = "O campo precisa ser um número!";
     $erro =1;
 } if ($umi_ideal > 100) {
-    $_SESSION['placeUmi'] = "A umidade ideal da cultura não pode exceder 100%!";
+    $_SESSION['placeUmi'] = "O campo não pode exceder 100%!";
     $erro =1;
 } if ($umi_ideal < 10) {
-    $_SESSION['placeUmi'] = "A umidade ideal da cultura não pode ser menor que 10%!";
+    $_SESSION['placeUmi'] = "O campo não pode ser menor que 10%!";
     $erro =1;
 } if($erro==0){
 

@@ -52,7 +52,6 @@ while ($dadosCont = $connn->fetch_array()) {
     $_SESSION['umiArCont'] = $dadosCont['umiAr_atual'];
 }
 
-include('controleDiario.php');
 
 //Destruindo os placeholders da tabela de cadatro
 
@@ -60,6 +59,8 @@ unset($_SESSION['placeName']);
 unset($_SESSION['placeDesc']);
 unset($_SESSION['placeTemp']);
 unset($_SESSION['placeUmi']);
+
+include('controleDiario30.php');
 ?>
 
 <!DOCTYPE html>
@@ -75,26 +76,58 @@ unset($_SESSION['placeUmi']);
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <link rel="stylesheet" type="text/css" href="CSS/graficos.css" />
     <link rel="stylesheet" type="text/css" href="CSS/home.css">
-
     <?php include("head.html"); ?>
 
 </head>
 
 <body>
-
+    
     <?php include("navbar.html"); ?>
+    
 
 
-    <div class="container-fluid">
-        <div class="col-sm-12">
-            <h4 style="font-size: 20pt;">Olá <?php echo $_SESSION['nomeUsuario']; ?>! Confira aqui as informações de sua estufa:</h4>
 
-            <br><br><br><br>
-
+    <div id="demo" class="carousel slide" data-ride="carousel">
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="CSS/imagens/brancojumbo.jpg" alt="Los Angeles" width="1100" height="500">
+                <div class="carousel-caption">
+                    <h3>Los Angeles</h3>
+                    <p>We had such a great time in LA!</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="CSS/imagens/GERALDO.png" alt="Chicago" width="1100" height="500">
+                <div class="carousel-caption">
+                    <h3>Chicago</h3>
+                    <p>Thank you, Chicago!</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="CSS/imagens/GERALDO.png" alt="New York" width="1100" height="500">
+                <div class="carousel-caption">
+                    <h3>New York</h3>
+                    <p>We love the Big Apple!</p>
+                </div>
+            </div>
         </div>
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
     </div>
 
 
+
+    <br><br><br>
+    <!--<br><br><br>
 
     <div class="container">
         <div class="col-sm-12 col-md-6" align="center" id="imgEstufa">
@@ -144,7 +177,7 @@ unset($_SESSION['placeUmi']);
             </table>
         </div>
     </div>
-
+-->
     <div class="container-fluid">
         <div class="col-sm-12 col-md-4" align="center" style=" font-size: 20pt; margin-top: 20px;">
             <h3>Umidade do solo (%)<br></h3>
@@ -225,7 +258,7 @@ unset($_SESSION['placeUmi']);
                         min: 0,
                         max: 100,
                         title: {
-                            text: 'Umidade do solo'
+                            text: ''
                         }
                     },
 
@@ -259,8 +292,8 @@ unset($_SESSION['placeUmi']);
 
         <div class="col-sm-12 col-md-4" align="center" style="font-size: 20pt; margin-top: 20px;">
             <h3>Temperatura do ambiente (°C)</h3>
-            <p class="textoGraficosGauge">A sua estufa contém sensores DHT11 para medir a temperatura do seu interior. Esses sensores permitem fazer medições
-                de 0°C a 50°C, com uma minima margem de erro de 2°C.<br>Abaixo confira a temperatura atual da sua estufa:</p>
+            <p class="textoGraficosGauge" style="margin-bottom: 68px;">A estufa contém sensores DHT11 para medir a temperatura do seu interior. Esses sensores permitem fazer medições
+                de 0°C a 50°C, com uma mínima margem de erro de 2°C.<br>Abaixo confira a temperatura atual da estufa:</p>
 
             <figure class="highcharts-figure">
 
@@ -332,7 +365,7 @@ unset($_SESSION['placeUmi']);
                         min: 0,
                         max: 100,
                         title: {
-                            text: 'Temperatura'
+                            text: ''
                         }
                     },
 
@@ -363,9 +396,9 @@ unset($_SESSION['placeUmi']);
 
         <div class="col-sm-12 col-md-4" align="center" style="font-size: 20pt; margin-top: 20px;">
             <h3>Umidade do ar (%)</h3>
-            <p class="textoGraficosGauge">O mesmo sensor DHT11 que fornece as medições de temperatura da sua estufa também oferece a medição da
-                umidade relativa do ar. O sensor pode determinar a umidade do ar da sua estufa entre 20% e 90%, com uma minima margem de erro de 5%.
-                <br>Abaixo confira a porcentagem atual de umidade do ar ar de sua estufa:</p>
+            <p class="textoGraficosGauge">O mesmo sensor DHT11 que fornece as medições de temperatura também oferece a medição da
+                umidade relativa do ar. O sensor pode determinar a umidade do ar da estufa entre 20% e 90%, com uma mínima margem de erro de 5%.
+                <br>Abaixo confira a porcentagem atual de umidade do ar ar da estufa:</p>
 
             <figure class="highcharts-figure">
 
@@ -437,7 +470,7 @@ unset($_SESSION['placeUmi']);
                         min: 0,
                         max: 100,
                         title: {
-                            text: 'Umidade do ar'
+                            text: ''
                         }
                     },
 
@@ -470,14 +503,13 @@ unset($_SESSION['placeUmi']);
 
     <div class="container-fluid">
         <div class="col-sm-12" align="center">
-            <p id="textoBotaoGraf">Clicando no botão abaixo você terá acesso a um grafico que contem os dados de umidade do solo,<br> temperatura e umidade relativa do ar
-                de sua estufa nos ultimos 7 dias, podendo fazer download do mesmo se assim preferir:</p>
+            <p id="textoBotaoGraf">Clicando no botão abaixo você terá acesso a um gráfico que contém os dados de umidade do solo,<br> temperatura e umidade relativa do ar
+                da estufa nos ultimos 15 dias, podendo fazer download se assim preferir:</p>
 
             <!-- Grafico de linha -->
-
+            <!--
             <span class="botaoGraf">Dados dos ultimos 7 dias</span>
             <div class='grafico7dias'>
-
                 <figure class="highcharts-figure">
                     <div id="container"></div>
                 </figure>
@@ -519,7 +551,7 @@ unset($_SESSION['placeUmi']);
                     });
                 </script>
             </div>
-<!--
+         -->
             <span class="botaoGrafi">Dados dos ultimos 15 dias</span>
             <div class='graficoUmid'>
 
@@ -533,7 +565,7 @@ unset($_SESSION['placeUmi']);
                             type: 'line'
                         },
                         title: {
-                            text: 'Umidade e temperatura nos ultimos 30 dias'
+                            text: 'Umidade e temperatura nos ultimos 15 dias'
                         },
                         xAxis: {
                             categories: ['15', '14', '13', '12', '11', '10', '9', '8', '7', '6', '5', '4', '3', '2', '1']
@@ -566,7 +598,7 @@ unset($_SESSION['placeUmi']);
 
             </div>
 
-
+            <!--
             <span class="botaoGraf30">Dados dos ultimos 30 dias</span>
             <div class='graficoUmi30'>
 

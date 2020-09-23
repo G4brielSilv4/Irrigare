@@ -25,9 +25,7 @@ $linhaUsu = mysqli_fetch_assoc($resultadoUsu);
 
     <?php include("navbar.html"); ?>
 
-    <div class="container-fluid">
-
-        <h1>Perfil </h1>
+<br><br><br><br> <br> <br>  <div class="container-fluid">
         <div class="col-sm-12">
             <div class="col-sm-12 col-md-3">
             </div>
