@@ -1,63 +1,63 @@
 <style>
-    
-.navbar-brand {
-    margin-right: 15px;
-    margin-left: 15px;
-}
+    .navbar-brand {
+        margin-right: 15px;
+        margin-left: 15px;
+    }
 
-.jumbotron {
-    padding: 0px 0px 0px 0px;
-    margin: 0px auto;
-    background-color: #228B22;
-    color: white;
-}
-
-
-.row-header h1{
-    font-family:Arial;
-    font-size: 50pt;
-}
+    .jumbotron {
+        padding: 0px 0px 0px 0px;
+        margin: 0px auto;
+        background-color: #228B22;
+        color: white;
+    }
 
 
-.row-header p{
-    margin: 0px auto;
-    padding: 10px 20px 5px 0px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16pt;
-}
+    .row-header h1 {
+        font-family: Arial;
+        font-size: 50pt;
+    }
 
-#grad1 {
-    height: 200px;
-    background-color: green;
-    /* For browsers that do not support gradients */
-    background-image: linear-gradient(#228B22  , rgb(95, 147, 95));
-}
 
-.navbar {
-    color: white;
-    font-family: Arial;
-}
+    .row-header p {
+        margin: 0px auto;
+        padding: 10px 20px 5px 0px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16pt;
+    }
 
-a.nav-link{
-    padding-left:10px ;
-    color: white;
-    padding-left: 50px;
-}
+    #grad1 {
+        height: 200px;
+        background-color: green;
+        /* For browsers that do not support gradients */
+        background-image: linear-gradient(#228B22, rgb(95, 147, 95));
+    }
 
-a#sair{
-    margin-left: 1100px;
-}
+    .navbar {
+        color: white;
+        font-family: Arial;
+    }
 
-a.nav-link:hover{
-    background-color: darkgreen;
-    color:#bad0ba;
-}
+    a.nav-link {
+        color: white;
+        margin-left: 30px;
+        font-size: 12pt ;
+    }
 
-a.nav-link:active{
-    color: black;
-}
+    a#sair {
+        margin-left: 850px;
+        font-size: 12pt;
+    }
+
+    a.nav-link:hover {
+        color: #bad0ba;
+    }
+
+    a.nav-link:active {
+        color: black;
+    }
 </style>
-<nav class="navbar-fluid navbar-expand-sm sticky-top" style="background-color: #228B22; padding: 10px 0px 10px 0px; font-family: Arial, Helvetica, sans-serif;">
+<nav class="navbar-fluid navbar-expand-sm sticky-top"
+    style="background-color: #228B22; padding: 10px 0px 10px 0px; font-family: Arial, Helvetica, sans-serif;">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -65,42 +65,20 @@ a.nav-link:active{
     <div class="collapse navbar-collapse" id="Navbar">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="home.php"><span class="fa fa-home fa-2x"></span><span style=" font-size: 15pt;"></span></a>
+                <a class="nav-link" href="home.php"><span class="fa fa-home fa-lg" style="margin-left: 20px;"></span> Home</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link " href="novaPlantacao.php " ><span class="fas fa-seedling fa-2x"></span><span style=" font-size: 15pt;"></span></a>
+                <a class="nav-link " href="novaPlantacao.php "><span class="fas fa-seedling fa-lg"></span> Cadastro de cultura</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link " href="perfilUsuario.php " ><span class="fas fa-user fa-2x"></span><span style=" font-size: 15pt;"> </span></a>
+                <a class="nav-link " href="perfilUsuario.php "><span class="fas fa-user fa-lg"></span> Perfil</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link " href="# "><span class="fas fa-question fa-2x"></span><span style=" font-size: 15pt;">  </span></a>
+                <a class="nav-link " href="# "><span class="fas fa-question fa-lg"></span> Ajuda</a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link " href="# " id="sair"  data-toggle="modal " data-target="#modalSair "><span class="fas fa-times fa-2x"></span><span style=" font-size: 15pt;"> </span></a>
-
-                <div class="modal fade " id="modalSair">
-                    <div class=" modal-dialog ">
-                        <!-- Modal content-->
-                        <div class="modal-content ">
-
-                            <div class="modal-header ">
-                                <h4 class="modal-title ">Deseja se desconectar?</h4>
-                                <button type="button " class="close " data-dismiss="modal ">&times;</button>
-                            </div>
-
-                            <div class="modal-body ">
-                                <p>Caso desconecte você precisará efetuar login novamente para acessar o sistema!</p>
-                            </div>
-
-                            <div class="modal-footer ">
-                                <button type="button " class="btn btn-default " data-dismiss="modal ">Cancelar</button>
-                                <a class="btn btn-danger " href="php_logoutUsu.php " role="button ">Desconectar</a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+            <li class="nav-item">
+                <a class="nav-link" id="sair" href="#" data-toggle="modal"
+                    data-target="#modalSair">Logout <span class="fas fa-external-link-alt fa-lg"></span></a>
             </li>
         </ul>
     </div>
@@ -110,12 +88,35 @@ a.nav-link:active{
     <div class="container-fluid" id="grad1">
         <div class="row row-header">
             <div class="col-sm-6">
-                <h1 style="padding-top:15px ;padding-left: 50px;">Irrigare</h1>
+                <h1 style="padding-top:10px ;padding-left: 50px;">Irrigare</h1>
                 <p style="padding-left: 30px; margin-top: -10px;">A sua estufa automatizada!</p>
             </div>
-            <div class="col-sm-6" align="right" style="padding-top: 0px; padding-right: 60px; margin-top: 0px;" >
-            <a href="home.php" ><img src="CSS/imagens/logoBrancoPreto.png"></a>
+            <div class="col-sm-6" align="right" style="padding-top: 0px; padding-right: 60px; margin-top: 0px;">
+                <a href="home.php"><img src="CSS/imagens/logoBrancoPreto.png"></a>
             </div>
         </div>
     </div>
 </header>
+
+<div class="modal fade " id="modalSair">
+    <div class=" modal-dialog ">
+
+
+        <div class="modal-content ">
+
+            <div class="modal-header ">
+                <h4 class="modal-title ">Deseja se desconectar?</h4>
+            </div>
+
+            <div class="modal-body ">
+                <p>Caso desconecte você precisará efetuar login novamente para acessar o sistema!</p>
+            </div>
+
+            <div class="modal-footer ">
+                <button type="button" class="btn btn-default " data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-danger " href="php_logoutUsu.php " role="button ">Desconectar</a>
+            </div>
+
+        </div>
+    </div>
+</div>

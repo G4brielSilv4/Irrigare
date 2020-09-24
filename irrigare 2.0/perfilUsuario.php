@@ -25,7 +25,28 @@ $linhaUsu = mysqli_fetch_assoc($resultadoUsu);
 
     <?php include("navbar.html"); ?>
 
-<br><br><br><br> <br> <br>  <div class="container-fluid">
+    <style>
+        .row-titulo {
+            margin-top: 20px;
+            font-size: 18pt;
+        }
+    </style>
+
+    <br><br>
+    <div class="container">
+        <div class="row row-titulo">
+            <div class="col-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="home.php" style="color: dimgray;">Home</a></li>
+                    <li class="breadcrumb-item active">Perfil</li>
+                </ol>
+
+                <hr>
+            </div>
+        </div>
+    </div>
+    <br><br> <br> <br>
+    <div class="container-fluid">
         <div class="col-sm-12">
             <div class="col-sm-12 col-md-3">
             </div>
@@ -58,7 +79,7 @@ $linhaUsu = mysqli_fetch_assoc($resultadoUsu);
         </div>
         <div class="col-sm-12" align="center">
 
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalEditar">Editar perfil</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalEditar">Editar perfil</button>
             <!--Começo do modal-->
             <div class="modal fade" id="modalEditar" role="dialog">
                 <div class="modal-dialog modal-dialog-centered modal-md">

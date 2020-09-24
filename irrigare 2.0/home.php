@@ -127,9 +127,7 @@ include('controleDiario30.php');
 
 
     <br><br><br>
-    <!--<br><br><br>
-
-    <div class="container">
+    <!--    <div class="container">
         <div class="col-sm-12 col-md-6" align="center" id="imgEstufa">
             <img src="CSS/imagens/estufa.png" alt="A imagem não pode ser carregada">
 
@@ -176,8 +174,7 @@ include('controleDiario30.php');
 
             </table>
         </div>
-    </div>
--->
+    </div>-->
     <div class="container-fluid">
         <div class="col-sm-12 col-md-4" align="center" style=" font-size: 20pt; margin-top: 20px;">
             <h3>Umidade do solo (%)<br></h3>

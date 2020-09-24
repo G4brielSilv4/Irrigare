@@ -53,10 +53,30 @@ $linhas = mysqli_num_rows($sql);
 
   <?php include("navbar.html"); ?>
 
+  <style>
+        .row-titulo {
+            margin-top: 20px;
+            font-size: 18pt;
+        }
+    </style>
 
 
+  <br><br>
+  
+  <div class="container">
+        <div class="row row-titulo">
+            <div class="col-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="home.php" style="color: dimgray;">Home</a></li>
+                    <li class="breadcrumb-item active">Cadastro de cultura</li>
+                </ol>
 
-  <br><br><br><br>
+                <hr>
+            </div>
+        </div>
+    </div>
+  
+  <br><br>
   <div class="container">
     <div class="col-sm-3"></div>
 
