@@ -61,6 +61,8 @@ unset($_SESSION['placeTemp']);
 unset($_SESSION['placeUmi']);
 
 include('controleDiario30.php');
+
+//var_dump($_SESSION['temp_idealCult']);
 ?>
 
 <!DOCTYPE html>
@@ -84,35 +86,45 @@ include('controleDiario30.php');
     
     <?php include("navbar.html"); ?>
     
-
-
-
     <div id="demo" class="carousel slide" data-ride="carousel">
         <ul class="carousel-indicators">
             <li data-target="#demo" data-slide-to="0" class="active"></li>
             <li data-target="#demo" data-slide-to="1"></li>
             <li data-target="#demo" data-slide-to="2"></li>
+            <li data-target="#demo" data-slide-to="3"></li>
         </ul>
+
         <div class="carousel-inner">
+
             <div class="carousel-item active">
-                <img src="CSS/imagens/brancojumbo.jpg" alt="Los Angeles" width="1100" height="500">
+                <img src="CSS/imagens/estufa1.jpg" width="1100" height="500">
                 <div class="carousel-caption">
-                    <h3>Los Angeles</h3>
-                    <p>We had such a great time in LA!</p>
+                    <h1 style="color:rgb(230,255,235) ;text-shadow: #000 1px -1px, #000 -1px 1px, #000 1px 1px, #000 -1px -1px;">Bem vindo <?php echo  $_SESSION['nomeUsuario']?> !</h1>
+                    <h4 style="color:rgb(230,255,235) ;text-shadow: #000 1px -1px, #000 -1px 1px, #000 1px 1px, #000 -1px -1px;">Confira as informações de sua plantação de <?php echo $_SESSION['nomeCult']?>!</h4>
                 </div>
             </div>
+
             <div class="carousel-item">
-                <img src="CSS/imagens/GERALDO.png" alt="Chicago" width="1100" height="500">
+                <img src="CSS/imagens/folhaDesfocada.jpg" width="1100" height="500">
                 <div class="carousel-caption">
-                    <h3>Chicago</h3>
-                    <p>Thank you, Chicago!</p>
+                    <h2 style="color:rgb(230,255,235) ;text-shadow: #000 1px -1px, #000 -1px 1px, #000 1px 1px, #000 -1px -1px;">Umidade do solo <?php echo $_SESSION['umiCont']?>%</h2>
+                    <h4 style="color:rgb(230,255,235) ;text-shadow: #000 1px -1px, #000 -1px 1px, #000 1px 1px, #000 -1px -1px;">Utilizamos sensores capacitivos para realizar um calculo preciso do  nível de umidades do solo de sua estufa,<br> além de o regularmos conforme for melhor para suas hotaliças!</h4>
                 </div>
             </div>
+
             <div class="carousel-item">
-                <img src="CSS/imagens/GERALDO.png" alt="New York" width="1100" height="500">
+                <img src="CSS/imagens/frieza.jpg" width="1100" height="500">
                 <div class="carousel-caption">
-                    <h3>New York</h3>
-                    <p>We love the Big Apple!</p>
+                    <h2  style="color:rgb(230,235,255) ;text-shadow: #000 1px -1px, #000 -1px 1px, #000 1px 1px, #000 -1px -1px;">Temperatura ambiente <?php echo $_SESSION['tempCont']?>°C</h2>
+                    <h4  style="color:rgb(230,235,255) ;text-shadow: #000 1px -1px, #000 -1px 1px, #000 1px 1px, #000 -1px -1px;">Sua estufa possui um ótimo controle termico, obtido por meio de nossos sensores DHT11, apartir dos dados por <br>ele captados  podemos alterar a temperatura de sua estufa para favorecer suas plantas!</h4>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="CSS/imagens/chuva.jpg" width="1100" height="500">
+                <div class="carousel-caption">
+                    <h2 style="color:rgb(230,235,255) ;text-shadow: #000 1px -1px, #000 -1px 1px, #000 1px 1px, #000 -1px -1px;">Umidade do ar <?php echo $_SESSION['umiArCont']?>%</h2>
+                    <h4 style="color:rgb(230,235,255) ;text-shadow: #000 1px -1px, #000 -1px 1px, #000 1px 1px, #000 -1px -1px;">Com o uso do nosso sensor DHT11 também é possivel obter a umidade relativa  do ar de sua estufa, com uma pequena margem de erro de 5%!</h4>
                 </div>
             </div>
         </div>
@@ -123,8 +135,6 @@ include('controleDiario30.php');
             <span class="carousel-control-next-icon"></span>
         </a>
     </div>
-
-
 
     <br><br><br>
     <!--    <div class="container">
@@ -176,12 +186,8 @@ include('controleDiario30.php');
         </div>
     </div>-->
     <div class="container-fluid">
-        <div class="col-sm-12 col-md-4" align="center" style=" font-size: 20pt; margin-top: 20px;">
-            <h3>Umidade do solo (%)<br></h3>
-            <p class="textoGraficosGauge">O solo da sua estufa passa por constantes medições para que suas plantas sempre estejam seguras e bem
-                umidecidas. Nosos sensores capacitivos são resistentes a corrosão e oferecem uma medição baseada na corrente eletrica do solo para
-                entregar uma avaliação mais precisa.<br>Abaixo confira a porcentagem atual de umidade do seu solo:</p>
-
+        <div class="col-sm-12 col-md-4" align="center" style=" font-size: 20pt; margin-top: 20px; border-right:solid 1px rgba(50,100,50,0.6);">
+            <h2>Umidade do solo (%)</h2>
 
             <figure class="highcharts-figure">
 
@@ -190,6 +196,14 @@ include('controleDiario30.php');
 
             </figure>
             <script>
+                var azul = <?php echo $_SESSION['umiCont']; ?>;
+                var corUmi = <?php echo($_SESSION['umi_idealCult']) ?>;
+                corUmi = corUmi/100;
+                var amarelo1 = corUmi - 0.01;
+                var amarelo2 = corUmi + 0.1;
+                var red1 = corUmi - 0.25;
+                var red2 = corUmi + 0.25;
+
                 var gaugeOptions = {
                     chart: {
                         type: 'solidgauge'
@@ -221,9 +235,11 @@ include('controleDiario30.php');
                     // the value axis
                     yAxis: {
                         stops: [
-                            [0.1, '#55BF3B'], // green
-                            [0.5, '#DDDF0D'], // yellow
-                            [0.9, '#DF5353'] // red
+                            [red1, '#DF5353'], //red
+                            [amarelo1, '#DDDF0D'], // yellow                            
+                            [corUmi, '#55BF3B'], // green
+                            [amarelo2, '#DDDF0D'], // yellow
+                            [red2, '#DF5353'] // red
                         ],
                         lineWidth: 0,
                         tickWidth: 0,
@@ -247,7 +263,6 @@ include('controleDiario30.php');
                         }
                     }
                 };
-                var azul = <?php echo $_SESSION['umiCont']; ?>;
 
                 // The speed gauge
                 var graficoUmidade = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
@@ -287,10 +302,8 @@ include('controleDiario30.php');
 
         </div>
 
-        <div class="col-sm-12 col-md-4" align="center" style="font-size: 20pt; margin-top: 20px;">
-            <h3>Temperatura do ambiente (°C)</h3>
-            <p class="textoGraficosGauge" style="margin-bottom: 68px;">A estufa contém sensores DHT11 para medir a temperatura do seu interior. Esses sensores permitem fazer medições
-                de 0°C a 50°C, com uma mínima margem de erro de 2°C.<br>Abaixo confira a temperatura atual da estufa:</p>
+        <div class="col-sm-12 col-md-4" align="center" style="font-size: 20pt; margin-top: 20px; border-right:solid 1px rgba(50,100,50,0.6);">
+            <h2>Temperatura do ambiente (°C)</h2>
 
             <figure class="highcharts-figure">
 
@@ -298,6 +311,14 @@ include('controleDiario30.php');
 
             </figure>
             <script>
+                var dado = <?php echo $_SESSION['tempCont']; ?>;
+                var corTemp = <?php echo($_SESSION['temp_idealCult']) ?>;
+                corTemp = corTemp/100;
+                var amarelo3 = corTemp - 0.05;
+                var amarelo4 = corTemp + 0.05;
+                var red3 = corTemp - 0.1;
+                var red4 = corTemp + 0.1;
+
                 var gaugeOptions = {
                     chart: {
                         type: 'solidgauge'
@@ -329,9 +350,11 @@ include('controleDiario30.php');
                     // the value axis
                     yAxis: {
                         stops: [
-                            [0.1, '#55BF3B'], // green
-                            [0.5, '#DDDF0D'], // yellow
-                            [0.9, '#DF5353'] // red
+                            [red3, '#DF5353'], // red
+                            [amarelo3, '#DDDF0D'], // yellow
+                            [corTemp, '#55BF3B'], // green
+                            [amarelo4, '#DDDF0D'], // yellow
+                            [red2, '#DF5353'] // red
                         ],
                         lineWidth: 0,
                         tickWidth: 0,
@@ -355,7 +378,6 @@ include('controleDiario30.php');
                         }
                     }
                 };
-                var dado = <?php echo $_SESSION['tempCont']; ?>;
                 // The speed gauge
                 var graficoUmidade = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, {
                     yAxis: {
@@ -392,10 +414,7 @@ include('controleDiario30.php');
         </div>
 
         <div class="col-sm-12 col-md-4" align="center" style="font-size: 20pt; margin-top: 20px;">
-            <h3>Umidade do ar (%)</h3>
-            <p class="textoGraficosGauge">O mesmo sensor DHT11 que fornece as medições de temperatura também oferece a medição da
-                umidade relativa do ar. O sensor pode determinar a umidade do ar da estufa entre 20% e 90%, com uma mínima margem de erro de 5%.
-                <br>Abaixo confira a porcentagem atual de umidade do ar ar da estufa:</p>
+            <h2>Umidade do ar (%)</h2>
 
             <figure class="highcharts-figure">
 
@@ -434,9 +453,9 @@ include('controleDiario30.php');
                     // the value axis
                     yAxis: {
                         stops: [
-                            [0.1, '#55BF3B'], // green
-                            [0.5, '#DDDF0D'], // yellow
-                            [0.9, '#DF5353'] // red
+                            [0.1, ''], // green
+                            //[0.5, '#DDDF0D'], // yellow
+                           // [0.9, '#DF5353'] // red
                         ],
                         lineWidth: 0,
                         tickWidth: 0,
@@ -499,56 +518,10 @@ include('controleDiario30.php');
     </div>
 
     <div class="container-fluid">
-        <div class="col-sm-12" align="center">
-            <p id="textoBotaoGraf">Clicando no botão abaixo você terá acesso a um gráfico que contém os dados de umidade do solo,<br> temperatura e umidade relativa do ar
-                da estufa nos ultimos 15 dias, podendo fazer download se assim preferir:</p>
+        <div class="col-sm-12" align="center" style="margin-top: 20px; font-size:11,5pt;">
+            <p id="textoBotaoGraf">Confira abaixo os dados de umidade do solo, temperatura e umidade relativa do ar
+                da estufa nos ultimos 15 dias,<br> podendo fazer download se assim preferir:</p>
 
-            <!-- Grafico de linha -->
-            <!--
-            <span class="botaoGraf">Dados dos ultimos 7 dias</span>
-            <div class='grafico7dias'>
-                <figure class="highcharts-figure">
-                    <div id="container"></div>
-                </figure>
-
-                <script>
-                    Highcharts.chart('container', {
-                        chart: {
-                            type: 'line'
-                        },
-                        title: {
-                            text: 'Umidade e temperatura nos ultimos 30 dias'
-                        },
-                        xAxis: {
-                            categories: ['7', '6', '5', '4', '3', '2', '1']
-                        },
-                        yAxis: {
-                            title: {
-                                text: 'Indice (%)/(°C)'
-                            }
-                        },
-                        plotOptions: {
-                            line: {
-                                dataLabels: {
-                                    enabled: true
-                                },
-                                enableMouseTracking: false
-                            }
-                        },
-                        series: [{
-                            name: 'Umidade solo (%)',
-                            data: [<?php echo ($umidade6); ?>, <?php echo ($umidade5); ?>, <?php echo ($umidade4); ?>, <?php echo ($umidade3); ?>, <?php echo ($umidade2); ?>, <?php echo ($umidade1); ?>, <?php echo ($umidadeDiario1); ?>]
-                        }, {
-                            name: 'Temperatura (°C)',
-                            data: [<?php echo ($temperatura6); ?>, <?php echo ($temperatura5); ?>, <?php echo ($temperatura4); ?>, <?php echo ($temperatura3); ?>, <?php echo ($temperatura2); ?>, <?php echo ($temperatura1); ?>, <?php echo ($temperaturaDiario1); ?>]
-                        }, {
-                            name: 'Umidade ar (%)',
-                            data: [<?php echo ($umidadeAr6); ?>, <?php echo ($umidadeAr5); ?>, <?php echo ($umidadeAr4); ?>, <?php echo ($umidadeAr3); ?>, <?php echo ($umidadeAr2); ?>, <?php echo ($umidadeAr1); ?>, <?php echo ($umidadeArDiario1); ?>]
-                        }]
-                    });
-                </script>
-            </div>
-         -->
             <span class="botaoGrafi">Dados dos ultimos 15 dias</span>
             <div class='graficoUmid'>
 
@@ -595,53 +568,6 @@ include('controleDiario30.php');
 
             </div>
 
-            <!--
-            <span class="botaoGraf30">Dados dos ultimos 30 dias</span>
-            <div class='graficoUmi30'>
-
-                <figure class="highcharts-figure">
-                    <div id="container"></div>
-                </figure>
-
-                <script>
-                    Highcharts.chart('container', {
-                        chart: {
-                            type: 'line'
-                        },
-                        title: {
-                            text: 'Umidade e temperatura nos ultimos 30 dias'
-                        },
-                        xAxis: {
-                            categories: ['30', '29', '28', '27', '26', '25', '24', '23', '22', '21', '20', '19', '18', '17','16', '15', '14', '13', '12', '11', '10', '9', '8', '7','6', '5', '4', '3', '2', '1']
-                        },
-                        yAxis: {
-                            title: {
-                                text: 'Indice (%)/(°C)'
-                            }
-                        },
-                        plotOptions: {
-                            line: {
-                                dataLabels: {
-                                    enabled: true
-                                },
-                                enableMouseTracking: false
-                            }
-                        },
-                        series: [{
-                            name: 'Umidade solo (%)',
-                            data: [<?php echo ($umidade29); ?>, <?php echo ($umidade28); ?>, <?php echo ($umidade27); ?>, <?php echo ($umidade26); ?>, <?php echo ($umidade25); ?>, <?php echo ($umidade24); ?>, <?php echo ($umidade23); ?>, <?php echo ($umidade22); ?>, <?php echo ($umidade21); ?>, <?php echo ($umidade20); ?>, <?php echo ($umidade19); ?>, <?php echo ($umidade18); ?>, <?php echo ($umidade17); ?>, <?php echo ($umidade16); ?>, <?php echo ($umidade15); ?>, <?php echo ($umidade14); ?>, <?php echo ($umidade13); ?>, <?php echo ($umidade12); ?>, <?php echo ($umidade11); ?>, <?php echo ($umidade10); ?>, <?php echo ($umidade9); ?>, <?php echo ($umidade8); ?>, <?php echo ($umidade7); ?>, <?php echo ($umidade6); ?>, <?php echo ($umidade5); ?>, <?php echo ($umidade4); ?>, <?php echo ($umidade3); ?>, <?php echo ($umidade2); ?>, <?php echo ($umidade1); ?>, <?php echo ($umidadeDiario1); ?>]
-                        }, {
-                            name: 'Temperatura (°C)',
-                            data: [<?php echo ($temperatura29); ?>, <?php echo ($temperatura28); ?>, <?php echo ($temperatura27); ?>, <?php echo ($temperatura26); ?>, <?php echo ($temperatura25); ?>, <?php echo ($temperatura24); ?>, <?php echo ($temperatura23); ?>, <?php echo ($temperatura22); ?>, <?php echo ($temperatura21); ?>, <?php echo ($temperatura20); ?>, <?php echo ($temperatura19); ?>, <?php echo ($temperatura18); ?>, <?php echo ($temperatura17); ?>, <?php echo ($temperatura16); ?>, <?php echo ($temperatura15); ?>, <?php echo ($temperatura14); ?>, <?php echo ($temperatura13); ?>, <?php echo ($temperatura12); ?>, <?php echo ($temperatura11); ?>, <?php echo ($temperatura10); ?>, <?php echo ($temperatura9); ?>, <?php echo ($temperatura8); ?>, <?php echo ($temperatura7); ?>, <?php echo ($temperatura6); ?>, <?php echo ($temperatura5); ?>, <?php echo ($temperatura4); ?>, <?php echo ($temperatura3); ?>, <?php echo ($temperatura2); ?>, <?php echo ($temperatura1); ?>, <?php echo ($temperaturaDiario1); ?>]
-                        }, {
-                            name: 'Umidade ar (%)',
-                            data: [<?php echo ($umidadeAr29); ?>, <?php echo ($umidadeAr28); ?>, <?php echo ($umidadeAr27); ?>, <?php echo ($umidadeAr26); ?>, <?php echo ($umidadeAr25); ?>, <?php echo ($umidadeAr24); ?>, <?php echo ($umidadeAr23); ?>, <?php echo ($umidadeAr22); ?>, <?php echo ($umidadeAr21); ?>, <?php echo ($umidadeAr20); ?>, <?php echo ($umidadeAr19); ?>, <?php echo ($umidadeAr18); ?>, <?php echo ($umidadeAr17); ?>, <?php echo ($umidadeAr16); ?>, <?php echo ($umidadeAr15); ?>, <?php echo ($umidadeAr14); ?>, <?php echo ($umidadeAr13); ?>, <?php echo ($umidadeAr12); ?>, <?php echo ($umidadeAr11); ?>, <?php echo ($umidadeAr10); ?>, <?php echo ($umidadeAr9); ?>, <?php echo ($umidadeAr8); ?>, <?php echo ($umidadeAr7); ?>, <?php echo ($umidadeAr6); ?>, <?php echo ($umidadeAr5); ?>, <?php echo ($umidadeAr4); ?>, <?php echo ($umidadeAr3); ?>, <?php echo ($umidadeAr2); ?>, <?php echo ($umidadeAr1); ?>, <?php echo ($umidadeArDiario1); ?>]
-                        }]
-                    });
-                </script>
-
-            </div>
-                -->
         </div>
     </div>
     <div>
@@ -656,12 +582,6 @@ include('controleDiario30.php');
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-
-    <!--------------//--------------//--------------//------- Scripts JavaScript do Firebase -------//---------------//---------------//--------------
-
-    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
-    <script src="firebase.js"></script>-->
 
     <script src="botoesGraficos.js"></script>
 </body>

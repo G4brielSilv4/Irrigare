@@ -1,13 +1,8 @@
 body {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     /* color: black;*/
 }
 
-.textoGraficosGauge {
-    font-size: 10pt;
-    margin-left: 40px;
-    margin-right: 40px;
-}
 
 #textoBotaoGraf {
     margin: 20px;
@@ -20,9 +15,7 @@ body {
 .carousel-inner img {
     width: 100%;
     height: 500px;
-}
-
-
+    }
 
 
 

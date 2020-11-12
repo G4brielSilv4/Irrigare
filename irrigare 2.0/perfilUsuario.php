@@ -114,7 +114,7 @@ $linhaUsu = mysqli_fetch_assoc($resultadoUsu);
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-info">Editar</button>
+                            <button type="submit" class="btn btn-success">Editar</button>
                             </form>
                         </div>
                     </div>
