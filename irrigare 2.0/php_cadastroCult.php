@@ -46,7 +46,7 @@ if (empty($nome)) {
 
     //A linha da tabela que esse set esta alterando é a da cod = 9 e a linha usada pelo Arduino é a cod = 8
 
-    $sql = "UPDATE cultura SET nome ='$nome',descricao='$descricao',umi_ideal='$umi_ideal',temp_ideal='$temp_ideal' WHERE cod=9";
+    $sql = "UPDATE cultura SET nome ='$nome',descricao='$descricao',umi_ideal='$umi_ideal',temp_ideal='$temp_ideal' WHERE cod=8";
     $query = $mysqli->query($sql) or die($mysqli->error);
 
     if (!$query) {

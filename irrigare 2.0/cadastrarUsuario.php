@@ -47,7 +47,7 @@ session_start();
 					
 
 				
-					<i class="fas fa-lock" id="iconSenha2"></i><input type="password" name="senhaConfirm" placeholder="Confirme  a senha">
+					<i class="fas fa-lock" id="iconSenha2"></i><input type="password" name="senhaConfirm" placeholder="Confirme a senha">
 				
 
 				<br><br><br>
